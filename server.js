@@ -28,8 +28,9 @@ app.post("/webhook", async (req, res) => {
         const service = params.service || "";
         const message = params.message || "";
 
+        // If not all params collected yet, let Dialogflow handle slot-filling
         if (!name || !email || !service || !message) {
-            return res.json({ fulfillmentText: "Please provide all required details." });
+            return res.json({});
         }
 
         try {
